@@ -16,7 +16,7 @@ const schema = z.object({
   loanProductId: z.string().min(1, "Loan type is required"),
   requestedAmount: z.coerce.number().optional(),
   tenure: z.coerce.number().optional(),
-  priority: z.enum(["LOW", "MEDIUM", "HIGH", "URGENT"]).default("MEDIUM"),
+  priority: z.enum(["LOW", "MEDIUM", "HIGH", "URGENT"]),
   notes: z.string().optional().or(z.literal("")),
   assignedToId: z.string().optional().or(z.literal("")),
 });
