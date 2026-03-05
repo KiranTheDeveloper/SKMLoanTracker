@@ -4,8 +4,9 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import {
   LayoutDashboard, Users, FileText, Bell, BarChart2,
-  UserCog, X, LogOut, Banknote,
+  UserCog, X, LogOut,
 } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
@@ -44,15 +45,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     >
       {/* Logo */}
       <div className="p-5 border-b border-slate-700 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-            <Banknote className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <p className="font-bold text-sm leading-tight">SKM LoanTrack</p>
-            <p className="text-xs text-slate-400 leading-tight">Financial Services</p>
-          </div>
-        </div>
+        <Image src="/logo.svg" alt="SKM LoanTrack" width={160} height={44} priority />
         <button
           onClick={onClose}
           className="md:hidden text-slate-400 hover:text-white p-1"
