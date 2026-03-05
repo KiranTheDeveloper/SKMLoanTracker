@@ -16,7 +16,7 @@ export default async function NewCustomerPage() {
 
   return (
     <>
-      <Header title="Add Customer" subtitle="Name & phone only — upload KYC docs to auto-fill everything else" />
+      <Header title="Add Customer" subtitle="Name & phone only — upload KYC docs to fill in details" />
       <div className="p-4 sm:p-6 max-w-2xl">
         <CustomerForm agents={agents} defaultAssignedToId={session.user.id} />
       </div>

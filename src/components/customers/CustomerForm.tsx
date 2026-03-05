@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Loader2, Sparkles } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { INDIAN_STATES } from "@/lib/constants";
 
@@ -95,11 +95,10 @@ export function CustomerForm({ agents, defaultAssignedToId, initialData, mode = 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Minimal info notice */}
         <div className="flex items-start gap-3 rounded-lg bg-blue-900/20 border border-blue-800/40 px-4 py-3">
-          <Sparkles className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
           <div>
             <p className="text-sm font-medium text-blue-300">Just Name &amp; Phone needed to start</p>
             <p className="text-xs text-blue-400/80 mt-0.5">
-              After saving, upload KYC documents (Aadhaar, PAN, bank statement, salary slip…) and AI will automatically extract and fill in address, date of birth, bank details, income, and more.
+              After saving, upload KYC documents (Aadhaar, PAN, bank statement, salary slip…) to fill in address, date of birth, bank details, income, and more.
             </p>
           </div>
         </div>

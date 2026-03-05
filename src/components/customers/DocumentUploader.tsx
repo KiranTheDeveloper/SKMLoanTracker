@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
-  Upload, FileText, Loader2, Sparkles, Trash2, ExternalLink,
+  Upload, FileText, Loader2, Trash2, ExternalLink,
   CheckCircle, AlertCircle, Clock, Download, ChevronDown, ChevronUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -86,7 +86,7 @@ export function DocumentUploader({ customerId, existingDocs, applicationId, isAd
       const res = await fetch("/api/documents", { method: "POST", body: form });
       if (!res.ok) throw new Error("Upload failed");
       const doc = await res.json();
-      toast.success("Document uploaded — running AI extraction...");
+      toast.success("Document uploaded — processing...");
       await triggerExtraction(doc.id);
       router.refresh();
     } catch {
@@ -104,7 +104,7 @@ export function DocumentUploader({ customerId, existingDocs, applicationId, isAd
       if (res.ok) {
         const data = await res.json();
         const fields = Object.keys(data.extracted || {}).filter(k => !META_FIELDS.includes(k));
-        toast.success("AI extraction complete", {
+        toast.success("Document processed", {
           description: fields.length > 0 ? `Extracted: ${fields.map(f => FIELD_LABELS[f] || f).slice(0, 5).join(", ")}${fields.length > 5 ? ` +${fields.length - 5} more` : ""}` : "No data found",
         });
         // Auto-expand the extracted data
@@ -165,7 +165,7 @@ export function DocumentUploader({ customerId, existingDocs, applicationId, isAd
             <input ref={fileRef} type="file" accept="image/*,.pdf" onChange={handleUpload} className="hidden" disabled={uploading} />
             <div className={`flex items-center gap-2 h-10 px-4 rounded-md border-2 border-dashed border-slate-600 text-sm text-slate-400 cursor-pointer hover:border-blue-500 hover:text-blue-400 transition-colors ${uploading ? "opacity-50 cursor-not-allowed" : ""}`}>
               {uploading ? (
-                <><Loader2 className="w-4 h-4 animate-spin" /> Uploading &amp; extracting...</>
+                <><Loader2 className="w-4 h-4 animate-spin" /> Uploading...</>
               ) : (
                 <><Upload className="w-4 h-4" /> Click to upload (JPG, PNG, PDF — max 10MB)</>
               )}
@@ -173,8 +173,7 @@ export function DocumentUploader({ customerId, existingDocs, applicationId, isAd
           </label>
         </div>
         <p className="text-xs text-slate-400 flex items-center gap-1.5">
-          <Sparkles className="w-3 h-3 text-yellow-400 flex-shrink-0" />
-          AI-powered extraction (Gemini 1.5 Flash) automatically reads Aadhaar, PAN, bank details, salary, address and more
+          Upload documents to automatically extract and save customer details
         </p>
       </div>
 
@@ -223,8 +222,8 @@ export function DocumentUploader({ customerId, existingDocs, applicationId, isAd
                   <div className="flex items-center gap-1 flex-shrink-0">
                     {doc.extractionStatus === "FAILED" && (
                       <Button size="sm" variant="ghost" onClick={() => triggerExtraction(doc.id)} disabled={extracting === doc.id} className="h-7 px-2 text-xs text-yellow-400 hover:text-yellow-300">
-                        {extracting === doc.id ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
-                        <span className="ml-1">Re-extract</span>
+                        {extracting === doc.id ? <Loader2 className="w-3 h-3 animate-spin" /> : null}
+                        <span className="ml-1">Re-process</span>
                       </Button>
                     )}
                     {extractedFields.length > 0 && (
@@ -254,7 +253,7 @@ export function DocumentUploader({ customerId, existingDocs, applicationId, isAd
                 {isExpanded && extractedFields.length > 0 && (
                   <div className="border-t border-slate-700/70 bg-slate-800/40 px-3 py-2.5">
                     <p className="text-xs font-medium text-yellow-400 flex items-center gap-1 mb-2">
-                      <Sparkles className="w-3 h-3" /> AI Extracted Data
+                      Extracted Data
                       {extracted?.confidence && (
                         <span className={`ml-1 px-1.5 py-0.5 rounded text-xs ${extracted.confidence === "HIGH" ? "bg-green-900/40 text-green-400" : extracted.confidence === "MEDIUM" ? "bg-yellow-900/40 text-yellow-400" : "bg-red-900/40 text-red-400"}`}>
                           {extracted.confidence} confidence

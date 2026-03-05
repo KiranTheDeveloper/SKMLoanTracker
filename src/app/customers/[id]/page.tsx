@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Phone, Mail, MapPin, Briefcase, CreditCard, Building2, Edit, Plus, FileText, Landmark, User, ShieldCheck, Sparkles } from "lucide-react";
+import { Phone, Mail, MapPin, Briefcase, CreditCard, Building2, Edit, Plus, FileText, Landmark, User, ShieldCheck } from "lucide-react";
 import { formatDate, formatCurrency, maskAadhaar } from "@/lib/utils";
 import { APPLICATION_STATUS_LABELS, APPLICATION_STATUS_COLORS } from "@/lib/constants";
 import { DocumentUploader } from "@/components/customers/DocumentUploader";
@@ -143,7 +143,7 @@ export default async function CustomerDetailPage({ params }: { params: Promise<{
                 <div className="text-center py-4">
                   <ShieldCheck className="w-8 h-8 text-slate-600 mx-auto mb-2" />
                   <p className="text-xs text-slate-400">No KYC data yet</p>
-                  <p className="text-xs text-slate-500 mt-1">Upload documents below to auto-extract</p>
+                  <p className="text-xs text-slate-500 mt-1">Upload documents below to fill in details</p>
                 </div>
               ) : (
                 <>
@@ -214,15 +214,12 @@ export default async function CustomerDetailPage({ params }: { params: Promise<{
                 <Badge className="bg-slate-700 text-slate-300">{customer.documents.length}</Badge>
               </CardTitle>
               {customer.documents.length === 0 && (
-                <span className="text-xs text-blue-400 flex items-center gap-1">
-                  <Sparkles className="w-3 h-3" />
-                  Upload to auto-fill customer info
-                </span>
+                <span className="text-xs text-blue-400">Upload documents to fill customer info</span>
               )}
             </div>
             {customer.documents.length === 0 && (
               <p className="text-xs text-slate-400 mt-1">
-                Upload Aadhaar, PAN, bank statement, salary slip, etc. — AI will automatically extract and save address, KYC numbers, income, bank details and more.
+                Upload Aadhaar, PAN, bank statement, salary slip, etc. to extract and save address, KYC numbers, income, and bank details.
               </p>
             )}
           </CardHeader>
