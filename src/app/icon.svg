@@ -6,8 +6,8 @@
     </linearGradient>
   </defs>
   <rect width="100" height="100" rx="22" fill="url(#bg)"/>
-  <!-- Coin/rupee accent bar -->
-  <rect x="28" y="30" width="44" height="5" rx="2.5" fill="white" opacity="0.35"/>
   <!-- SKM text -->
-  <text x="50" y="72" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="34" fill="white" text-anchor="middle" letter-spacing="-1">SKM</text>
+  <text x="50" y="58" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="34" fill="white" text-anchor="middle" letter-spacing="-1">SKM</text>
+  <!-- Accent bar at bottom -->
+  <rect x="28" y="68" width="44" height="5" rx="2.5" fill="white" opacity="0.4"/>
 </svg>
