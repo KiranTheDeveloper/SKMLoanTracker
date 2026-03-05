@@ -7,10 +7,10 @@
   </defs>
   <!-- Icon box -->
   <rect width="44" height="44" rx="10" x="0" y="4" fill="url(#iconBg)"/>
-  <!-- Accent bar -->
-  <rect x="10" y="14" width="24" height="3" rx="1.5" fill="white" opacity="0.4"/>
   <!-- SKM monogram -->
-  <text x="22" y="37" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="16" fill="white" text-anchor="middle" letter-spacing="-0.5">SKM</text>
+  <text x="22" y="33" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="16" fill="white" text-anchor="middle" letter-spacing="-0.5">SKM</text>
+  <!-- Accent bar at bottom -->
+  <rect x="10" y="38" width="24" height="3" rx="1.5" fill="white" opacity="0.4"/>
   <!-- App name -->
   <text x="56" y="28" font-family="Arial, sans-serif" font-weight="700" font-size="17" fill="#F1F5F9" letter-spacing="-0.3">LoanTrack</text>
   <!-- Sub label -->
