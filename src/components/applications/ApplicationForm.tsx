@@ -21,7 +21,15 @@ const schema = z.object({
   assignedToId: z.string().optional().or(z.literal("")),
 });
 
-type FormData = z.infer<typeof schema>;
+type FormData = {
+  customerId: string;
+  loanProductId: string;
+  requestedAmount?: number;
+  tenure?: number;
+  priority: "LOW" | "MEDIUM" | "HIGH" | "URGENT";
+  notes?: string;
+  assignedToId?: string;
+};
 
 interface Props {
   customers: { id: string; name: string; phone: string }[];
